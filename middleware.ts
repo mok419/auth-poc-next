@@ -1,9 +1,9 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { updateSession } from "./lib";
 
 async function checkOtherSiteCookie(request: NextRequest) {
   const session = request.cookies.get("session")?.value;
-  if (!session) return;
+  if (!session) return NextResponse.json('<h2> A session cookie is required to access this page</h2>');
 
 }
 
