@@ -10,7 +10,7 @@ async function checkOtherSiteCookie(request: NextRequest) {
 
 export async function middleware(request: NextRequest) {
   await updateSession(request);
-  return checkOtherSiteCookie(request);
+  return await checkOtherSiteCookie(request);
 }
 
 
