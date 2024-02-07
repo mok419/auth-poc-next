@@ -28,14 +28,6 @@ export default async function Page() {
         <button type="submit">Logout</button>
       </form>
       <pre>{JSON.stringify(session, null, 2)}</pre>
-      <Image
-              src="/test-image.png"
-              alt="Cookie explanation from online"
-              className="dark:invert"
-              width={600}
-              height={400}
-              priority
-            />
     </section>
   );
 }

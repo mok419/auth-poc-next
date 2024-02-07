@@ -2,13 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { updateSession } from "./lib";
 
 async function checkOtherSiteCookie(request: NextRequest) {
-  const theme = request.cookies.get("theme")?.value;
+  const theme = request.cookies.get("session")?.value;
   console.log(theme);
-  if (!theme) return NextResponse.json('<h2> A Theme cookie is required to access this page</h2>');
+  if (!theme) return NextResponse.json('<h2> A session cookie is required to access this page</h2>');
 }
 
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request);
-  checkOtherSiteCookie(request);
+  await updateSession(request);
+  return checkOtherSiteCookie(request);
+}
+
+
+export const config = {
+  matcher: ['/test-image.png'],
 }
