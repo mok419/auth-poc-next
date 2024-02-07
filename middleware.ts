@@ -9,11 +9,24 @@ async function checkOtherSiteCookie(request: NextRequest) {
 
 
 export async function middleware(request: NextRequest) {
-  await updateSession(request);
-  return await checkOtherSiteCookie(request);
+  if (request.nextUrl.pathname.startsWith('/test-image.png')) {
+    await updateSession(request);
+    return await checkOtherSiteCookie(request);
+  } else {
+    const res = NextResponse.next()
+  // add the CORS headers to the response
+  res.headers.append('Access-Control-Allow-Credentials', "true")
+  res.headers.append('Access-Control-Allow-Origin', '*') // replace this your actual origin
+  res.headers.append('Access-Control-Allow-Methods', 'GET,DELETE,PATCH,POST,PUT')
+  res.headers.append(
+      'Access-Control-Allow-Headers',
+      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, Set-Cookie'
+  )
+  return res;
+  }
 }
 
 
-export const config = {
-  matcher: ['/test-image.png'],
-}
+// export const config = {
+//   matcher: ['/test-image.png'],
+// }
