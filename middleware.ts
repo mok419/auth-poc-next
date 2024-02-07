@@ -12,3 +12,7 @@ export async function middleware(request: NextRequest) {
   // await updateSession(request);
   return await checkOtherSiteCookie(request)
 }
+
+export const config = {
+  matcher: ['/test-image'],
+}
