@@ -3,7 +3,7 @@ import { updateSession } from "./lib";
 
 async function checkOtherSiteCookie(request: NextRequest) {
   const theme = request.cookies.get("session")?.value;
-  console.log(theme);
+  console.log('hi');
   if (!theme) return NextResponse.json('<h2> A session cookie is required to access this page</h2>');
 }
 

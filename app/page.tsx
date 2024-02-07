@@ -29,6 +29,8 @@ export default async function Page() {
       </form>
       <pre>{JSON.stringify(session, null, 2)}</pre>
 
+
+      <h1><a href="https://nextjs-https-cookie-test.vercel.app">try to visit this site first</a></h1>
     </section>
   );
 }
