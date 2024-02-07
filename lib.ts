@@ -30,7 +30,7 @@ export async function login(formData: FormData) {
   const session = await encrypt({ user, expires });
 
   // Save the session in a cookie
-  cookies().set("session", session, { domain: 'auth-poc-next.vercel.app' ,expires, secure: true, sameSite: "none" });
+  cookies().set("session", session, {expires, sameSite: "none", secure: true });
 }
 
 export async function logout() {
