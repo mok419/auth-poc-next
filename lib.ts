@@ -30,7 +30,7 @@ export async function login(formData: FormData) {
   const session = await encrypt({ user, expires });
 
   // Save the session in a cookie
-  cookies().set("session", session, { expires, httpOnly: true });
+  cookies().set("session", session, { expires, httpOnly: true, secure: true, sameSite: "none" });
 }
 
 export async function logout() {
@@ -57,6 +57,8 @@ export async function updateSession(request: NextRequest) {
     value: await encrypt(parsed),
     httpOnly: true,
     expires: parsed.expires,
+    sameSite: "none",
+    secure: true
   });
   return res;
 }
